@@ -2,8 +2,10 @@ package com.jose.students.service;
 
 import com.jose.students.entity.Student;
 import com.jose.students.repository.StudentRepository;
+import jakarta.persistence.EntityNotFoundException;
 
 import java.util.List;
+import java.util.Optional;
 
 public class StudentServiceImpl implements StudentService {
 
@@ -15,26 +17,31 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> listAllStudents() {
-        return null;
+        return repository.findAll();
     }
 
     @Override
     public Student saveStudent(Student student) {
-        return null;
+        return repository.save(student);
     }
 
     @Override
     public Student getStudentById(Long id) {
-        return null;
+        Optional<Student> optionalStudent = repository.findById(id);
+        if (optionalStudent.isPresent()) {
+            return optionalStudent.get();
+        } else { // if the entity with the given Id is not found
+            throw new EntityNotFoundException("Student with ID " + id + " not found.");
+        }
     }
 
     @Override
     public Student updateStudent(Student student) {
-        return null;
+        return repository.save(student);
     }
 
     @Override
     public void deleteStudent(Long id) {
-
+        repository.deleteById(id);
     }
 }
