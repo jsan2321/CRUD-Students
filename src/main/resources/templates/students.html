@@ -11,7 +11,7 @@
             <a class="navbar-brand" href="#">Student Control</a>
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-brand">
-                    <li class="nav-item"><a class="nav-link" >Student Control</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/students}">Student Control</a></li>
                 </ul>
             </div>
         </nav>
@@ -22,7 +22,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-3">
-                    <a class="btn btn-outline-primary btn-sm mb3">Add student</a>
+                    <a th:href="@{/students/new}" class="btn btn-outline-primary btn-sm mb3">Add student</a>
                 </div>
             </div>
             <br>
@@ -36,13 +36,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr >
-                        <td >Name</td>
-                        <td >Last Name</td>
-                        <td >Email</td>
+                    <tr th:each="student : ${students}" >
+                        <td th:text="${student.name}" >Name</td>
+                        <td th:text="${student.lastName}" >Last Name</td>
+                        <td th:text="${student.email}" >Email</td>
                         <td>
-                            <a class="btn btn-outline-info">Edit</a>
-                            <a class="btn btn-outline-danger">Delete</a>
+                            <a th:href="@{/students/edit/{id}(id=${student.id})}" class="btn btn-outline-info">Edit</a>
+                            <a th:href="@{/students/{id}(id=${student.id})}" class="btn btn-outline-danger">Delete</a>
                         </td>
                     </tr>
                 </tbody>
