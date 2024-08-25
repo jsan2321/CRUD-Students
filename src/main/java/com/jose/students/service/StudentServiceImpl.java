@@ -3,10 +3,12 @@ package com.jose.students.service;
 import com.jose.students.entity.Student;
 import com.jose.students.repository.StudentRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository repository;
